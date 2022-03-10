@@ -39,10 +39,9 @@ public class Simulation {
     }
 
     public void loopUntilPlayerSucceed() {
-        boolean res = false;
-        while(res == false) {
+        boolean res;
+        do{
             res = nextRound();
-
-        }
+        }while (res == false);
     }
 }
