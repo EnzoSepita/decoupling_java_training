@@ -32,7 +32,8 @@ public class Simulation {
             return true;
         }
         if (numberToGuess > num){
-            player.askNextGuess();
+            player.respond(true);
+
         }
         else
         {
@@ -56,14 +57,14 @@ public class Simulation {
         long end = System.currentTimeMillis();
         Date time = new Date(end-start);
         DateFormat format = new SimpleDateFormat("mm:ss.SSS");
-        System.out.println("La partie s'est terminé en :" + format);
+        logger.log("La partie s'est terminé en :" + format.format(time));
         if (res)
         {
-            System.out.println("Vous avez trouvé la solution en " + i + " fois.");
+            logger.log("Vous avez trouvé la solution en " + i + " fois.");
         }
         else
         {
-            System.out.println("Vous n'avez pas trouvé la solution avant la limite");
+            logger.log("Vous n'avez pas trouvé la solution avant la limite");
         }
     }
 }

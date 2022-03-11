@@ -5,6 +5,9 @@ import java.util.regex.Pattern;
 
 public class Launcher {
     public static void main(String[] args){
+        if (args.length == 0){
+            throw new IllegalArgumentException("Missing mode parameter");
+        }
         if (args[0].equals("-interactive")){
             Simulation simu = new Simulation(new HumanPlayer());
             SecureRandom random = new SecureRandom();
@@ -12,6 +15,9 @@ public class Launcher {
             simu.loopUntilPlayerSucceed(Long.MAX_VALUE);
         }
         else if (args[0].equals("-auto") && Pattern.compile("-?\\d+(\\.\\d+)?").matcher(args[1]).matches()){
+            if (args.length < 2){
+                throw new IllegalArgumentException("Missing numberToGuess for auto mode");
+            }
             Simulation sim = new Simulation(new ComputerPlayer());
             SecureRandom random = new SecureRandom();
             sim.initialize(random.nextLong(Long.parseLong(args[1])));
