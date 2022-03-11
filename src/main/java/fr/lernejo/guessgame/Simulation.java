@@ -3,7 +3,10 @@ package fr.lernejo.guessgame;
 import fr.lernejo.logger.Logger;
 import fr.lernejo.logger.LoggerFactory;
 
-import java.util.Scanner;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class Simulation {
     private final Logger logger = LoggerFactory.getLogger("simulation");
@@ -38,10 +41,28 @@ public class Simulation {
         return false;
     }
 
-    public void loopUntilPlayerSucceed() {
+    public void loopUntilPlayerSucceed(long max_iter) {
         boolean res;
+        long start = System.currentTimeMillis();
+        long i = 0;
         do{
             res = nextRound();
+            i++;
+            if(i >= max_iter) {
+                break;
+            }
         }while (res == false);
+        long end = System.currentTimeMillis();
+        Date time = new Date(end-start);
+        DateFormat format = new SimpleDateFormat("mm:ss.SSS");
+        System.out.println("La partie s'est terminé en :" + format);
+        if (res)
+        {
+            System.out.println("Vous avez trouvé la solution en " + i + " fois.");
+        }
+        else
+        {
+            System.out.println("Vous n'avez pas trouvé la solution avant la limite");
+        }
     }
 }
