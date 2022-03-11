@@ -12,7 +12,7 @@ public class Launcher {
             simu.loopUntilPlayerSucceed(Long.MAX_VALUE);
         }
         else if (args[0].equals("-auto") && Pattern.compile("-?\\d+(\\.\\d+)?").matcher(args[1]).matches()){
-            Simulation sim = new Simulation(new ComputerPlayer(Long.parseLong(args[1])));
+            Simulation sim = new Simulation(new ComputerPlayer());
             SecureRandom random = new SecureRandom();
             sim.initialize(random.nextLong(Long.parseLong(args[1])));
             sim.loopUntilPlayerSucceed(1000);

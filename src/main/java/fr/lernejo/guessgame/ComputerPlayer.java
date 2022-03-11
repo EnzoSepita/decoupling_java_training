@@ -7,38 +7,22 @@ import java.util.Scanner;
 
 public class ComputerPlayer implements Player{
     Logger logger = LoggerFactory.getLogger("player");
-    private long max;
-    private long min;
-    private long prev;
-    private boolean isGreater;
-    public ComputerPlayer(long max_count){
-        max = max_count;
-        min = -1;
-        isGreater = false;
-    }
+    private long max = Long.MAX_VALUE;
+    private long min = Long.MIN_VALUE;
 
     @Override
     public long askNextGuess(){
-        long guess = -1;
-        if(min == -1l){
-            guess = max/2;
-            min = 0;
-        }else{
-            min = isGreater ? prev : min;
-            max = !isGreater ? prev : max;
-            guess = (min+max)/2;
-        }
-        prev = guess;
-        logger.log("Computer propose "+guess);
-        return guess;
+        return(min + max)/2;
     }
     @Override
     public void respond(boolean lowerOrGreater){
         if (lowerOrGreater){
             logger.log("Plus grand");
+            min = askNextGuess();
         }
         else{
             logger.log("Plus petit");
+            max = askNextGuess();
         }
     }
 }
