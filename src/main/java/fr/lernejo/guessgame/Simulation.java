@@ -58,13 +58,17 @@ public class Simulation {
         Date time = new Date(end-start);
         DateFormat format = new SimpleDateFormat("mm:ss.SSS");
         logger.log("La partie s'est terminé en :" + format.format(time));
+        System.out.println("La partie s'est terminé en :" + format.format(time));
         if (res)
         {
             logger.log("Vous avez trouvé la solution en " + i + " fois.");
+            System.out.println("Vous avez trouvé la solution en " + i + " fois.");
+
         }
         else
         {
             logger.log("Vous n'avez pas trouvé la solution avant la limite");
+            System.out.println("Vous n'avez pas trouvé la solution avant la limite");
         }
     }
 }
